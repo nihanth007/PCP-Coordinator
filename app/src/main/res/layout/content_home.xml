@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="tk.nihanth.pcp_coordinator.HomeActivity"
+    tools:showIn="@layout/app_bar_home">
+
+    <TextView
+        android:gravity="center"
+        android:textSize="30sp"
+        android:text="Add News"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <EditText
+        android:layout_marginBottom="10dp"
+        android:id="@+id/AddNewsCourseId"
+        android:hint="Enter Course Id"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <EditText
+        android:layout_marginBottom="10dp"
+        android:id="@+id/AddNewsTitle"
+        android:hint="Enter News Title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <EditText
+        android:layout_marginBottom="10dp"
+        android:id="@+id/AddNewsMsg"
+        android:hint="Enter News Message"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <Button
+        android:id="@+id/SendNewsButton"
+        android:text="Send News and Notification"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+</LinearLayout>

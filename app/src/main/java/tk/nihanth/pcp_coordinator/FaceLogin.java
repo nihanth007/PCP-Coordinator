@@ -22,15 +22,21 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.microsoft.projectoxford.face.*;
 import com.microsoft.projectoxford.face.contract.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+
+import tk.nihanth.pcp_coordinator.Models.Student;
 
 public class FaceLogin extends AppCompatActivity {
 
@@ -121,13 +127,22 @@ public class FaceLogin extends AppCompatActivity {
         final String faceId1 = faceNow.faceId.toString();
         progressDialog.setMessage("Verifying Face with the Server...");
         progressDialog.show();
-        String url = "http://nihanth.westus2.cloudapp.azure.com/Coordinator/VerifyFace/";
+        String url = "http://52.183.88.200/Coordinator/VerifyFace/";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(FaceLogin.this,"Message Received " + response ,Toast.LENGTH_LONG).show();
+                        JsonParser parser = new JsonParser();
+                        JsonElement jsonElement =  parser.parse(response);
+                        if(jsonElement.isJsonObject()){
+                            Intent i = new Intent(FaceLogin.this,HomeActivity.class);
+                            i.putExtra("coordinator",jsonElement.toString());
+                            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(i);
+                            finish();
+                        }
+
                         progressDialog.dismiss();
                     }
                 },

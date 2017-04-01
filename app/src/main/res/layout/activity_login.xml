@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="20dp"
-        android:text="--------OR-------"
+        android:text="--------OR--------"
         android:textColor="#fdfdfd"
         android:textSize="20sp" />
 

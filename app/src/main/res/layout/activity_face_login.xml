@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/registration_gradient"
     tools:context="tk.nihanth.pcp_coordinator.FaceLogin">
     <EditText
         android:gravity="center"

@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/registration_gradient"
-    tools:context="tk.nihanth.pcp_coordinator.Attendance">
+    tools:context="tk.nihanth.pcp_coordinator.FingerRegisterActivity">
 
     <TextView
         android:id="@+id/deviceText"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
-        android:text="Device Connected" />
+        android:text="Biometric Device Connection Status : " />
 
     <TextView
         android:id="@+id/DeviceConnectionStatus"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
         android:text="False"
-        android:gravity="right"
         android:textColor="#ff0000"
         android:layout_toRightOf="@id/deviceText"
         android:layout_alignParentEnd="true" />
@@ -38,13 +38,6 @@
         android:layout_below="@+id/FingerImage"
         android:layout_alignParentStart="true" />
 
-    <EditText
-        android:hint="Please Enter Course Id"
-        android:id="@+id/PersonAttendanceCourseId"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@+id/PersonAttendanceId"
-        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/StatusMessageAttendance"
@@ -69,8 +62,8 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Login"
-            android:id="@+id/AttendanceSubmitButton"
+            android:text="Register Finger"
+            android:id="@+id/FingerRegisterButton"
             android:layout_weight="1"/>
 
     </LinearLayout>

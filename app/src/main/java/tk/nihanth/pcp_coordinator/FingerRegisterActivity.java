@@ -2,7 +2,6 @@ package tk.nihanth.pcp_coordinator;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
@@ -30,14 +29,12 @@ import com.mantra.mfs100.FingerData;
 import com.mantra.mfs100.MFS100;
 import com.mantra.mfs100.MFS100Event;
 
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
 import tk.nihanth.pcp_coordinator.Models.Coordinator;
 
-
-public class Attendance extends AppCompatActivity implements MFS100Event {
+public class FingerRegisterActivity extends AppCompatActivity implements MFS100Event {
 
     private static int mfsVer = 41;
     MFS100 mfs100 = new MFS100(this, mfsVer);
@@ -56,7 +53,7 @@ public class Attendance extends AppCompatActivity implements MFS100Event {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_attendance);
+        setContentView(R.layout.activity_finger_register);
         mfs100.SetApplicationContext(this);
         connectionStatus = (TextView) findViewById(R.id.DeviceConnectionStatus);
         fingerImage = (ImageView) findViewById(R.id.FingerImage);
@@ -69,13 +66,11 @@ public class Attendance extends AppCompatActivity implements MFS100Event {
         JsonParser parser = new JsonParser();
         element = parser.parse(temp);
         Gson gson = new Gson();
-        final Coordinator c = gson.fromJson(element, Coordinator.class);
-
-        final String centreId = c.CentreId;
+        Coordinator c = gson.fromJson(element, Coordinator.class);
+        final Coordinator co = c;
 
         personId = (EditText) findViewById(R.id.PersonAttendanceId);
         courseId = (EditText) findViewById(R.id.PersonAttendanceCourseId);
-        final RequestQueue requestQueue = Volley.newRequestQueue(this);
 
         Button capture = (Button) findViewById(R.id.FingerCaptureButton);
         capture.setOnClickListener(new View.OnClickListener() {
@@ -109,98 +104,47 @@ public class Attendance extends AppCompatActivity implements MFS100Event {
 
                     statusMessage.setText("Success \n");
                 }
-
+                encodedIso = Base64.encodeToString(iso,0);
 
             }
         });
-        Button login = (Button) findViewById(R.id.AttendanceSubmitButton);
-        login.setOnClickListener(new View.OnClickListener()
 
-        {
+        Button registerButton = (Button) findViewById(R.id.FingerRegisterButton);
+        registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                statusMessage.setText("");
-                int initialize = mfs100.Init();
-                if (initialize != 0) {
-                    statusMessage.setText("Error Initializing Device");
-                    return;
-                }
-                progressDialog.setMessage("Verifying Fingerprint");
+                RequestQueue requestQueue = Volley.newRequestQueue(FingerRegisterActivity.this);
+
+                String url = "http://52.183.88.200/Student/RegisterFinger";
+                progressDialog.setMessage("Registering Finger");
                 progressDialog.show();
-                String url = "http://nihanth.westus2.cloudapp.azure.com/Student/IsoTemplateRequest";
-                final RequestQueue queue = Volley.newRequestQueue(Attendance.this);
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-                                if (response != "Student Data Not Found") {
-                                    iso1 = Base64.decode(response, 0);
-                                    int verify = mfs100.MatchISO(iso, iso1);
-                                    if (verify >= 1400) {
-                                        progressDialog.setMessage("Person Verified.\nPosting Attendance");
-
-                                        String url = "http://52.183.88.200/Student/StudentAttendance";
-                                        StringRequest request = new StringRequest(Request.Method.POST, url,
-                                                new Response.Listener<String>() {
-                                                    @Override
-                                                    public void onResponse(String response) {
-                                                        progressDialog.dismiss();
-                                                        if(response.equals("Success"))
-                                                            Toast.makeText(Attendance.this,"Attendance Successfully Posted",Toast.LENGTH_SHORT).show();
-                                                        else{
-                                                            Toast.makeText(Attendance.this,response,Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    }
-                                                },
-                                                new Response.ErrorListener() {
-                                                    @Override
-                                                    public void onErrorResponse(VolleyError error) {
-                                                        progressDialog.dismiss();
-                                                        Toast.makeText(Attendance.this,"Server Error. Try Again Later",Toast.LENGTH_SHORT).show();
-                                                    }
-                                                }){
-                                            Calendar c = Calendar.getInstance();
-                                            int date = c.get(Calendar.DATE);
-                                            int month = c.get(Calendar.MONTH);
-                                            int year = c.get(Calendar.YEAR);
-                                            String dateStr = String.valueOf(date) + "-" + String.valueOf(month) + "-" + String.valueOf(year);
-
-                                            @Override
-                                            protected Map<String, String> getParams() throws AuthFailureError {
-                                                Map<String,String> params = new HashMap<>();
-                                                JsonObject jsonObject = new JsonObject();
-                                                jsonObject.addProperty("Date",dateStr);
-                                                jsonObject.addProperty("PersonId", String.valueOf(personId.getText()));
-                                                jsonObject.addProperty("CourseId", String.valueOf(courseId.getText()));
-                                                jsonObject.addProperty("CentreId",centreId);
-                                                params.put("data",jsonObject.toString());
-                                                return  params;
-                                            }
-                                        };
-                                        queue.add(request);
-                                    } else {
-                                        statusMessage.setText("Finger Not Matched");
-                                        progressDialog.dismiss();
-                                    }
-                                } else {
-                                    Toast.makeText(Attendance.this, "Student Data Not Found", Toast.LENGTH_SHORT).show();
-                                    progressDialog.dismiss();
-                                }
+                                progressDialog.dismiss();
+                                Toast.makeText(FingerRegisterActivity.this,response,Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(FingerRegisterActivity.this,HomeActivity.class);
+                                i.putExtra("coordinator",element.toString());
+                                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(i);
+                                finish();
                             }
                         },
                         new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-
+                                Toast.makeText(FingerRegisterActivity.this,"Server Error",Toast.LENGTH_SHORT).show();
                             }
-                        }) {
+                        }){
                     @Override
                     protected Map<String, String> getParams() throws AuthFailureError {
                         Map<String, String> params = new HashMap<>();
                         JsonObject jsonObject = new JsonObject();
-                        jsonObject.addProperty("CoordinatorId", c.id);
-                        jsonObject.addProperty("Password", c.Password);
+                        jsonObject.addProperty("CoordinatorId", co.id);
+                        jsonObject.addProperty("Password", co.Password);
                         jsonObject.addProperty("StudentId", String.valueOf(personId.getText()));
+                        jsonObject.addProperty("ISO",encodedIso);
                         params.put("data", jsonObject.toString());
                         return params;
                     }

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/registration_gradient"
+    tools:context="tk.nihanth.pcp_coordinator.RegistrationActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="70dp"
+                android:text="Student Registration Form"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                android:textColor="#FDFDFD" />
+
+
+            <EditText
+                android:id="@+id/StudentId"
+                style="@style/Widget.AppCompat.AutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:ems="10"
+                android:hint="Enter id"
+                android:inputType="textPersonName"
+                android:textColorHint="#FFFFFF" />
+
+
+            <EditText
+                android:id="@+id/StudentFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:ems="10"
+                android:hint="Enter First Name"
+                android:inputType="textPersonName"
+                android:textColorHint="#FFFFFF" />
+
+
+            <EditText
+                android:id="@+id/StudentLastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:ems="10"
+                android:hint="Enter Last Name"
+                android:inputType="textPersonName"
+                android:textColorHint="#FFFFFF" />
+
+            <EditText
+                android:id="@+id/StudentPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:ems="10"
+                android:hint="Enter password"
+                android:inputType="textPassword"
+                android:textColorHint="#FFFFFF" />
+
+            <EditText
+                android:id="@+id/StudentEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:ems="10"
+                android:hint="Email Address"
+                android:inputType="textEmailAddress"
+                android:textColorHint="#FFFFFF" />
+
+
+            <EditText
+                android:id="@+id/StudentDOB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:ems="10"
+                android:hint="Date Of Birth      DD/MM/YY"
+                android:inputType="date"
+                android:textColorHint="#FFFFFF" />
+
+
+            <RadioGroup
+                android:id="@+id/Gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/StudentGenderFemale"
+                    android:layout_width="184dp"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="#FFFFFF"
+                    android:text="Female"
+                    android:textColor="#FFFFFF" />
+
+
+                <RadioButton
+                    android:id="@+id/StudentGenderMale"
+                    android:layout_width="184dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="#FFFFFF"
+                    android:text="Male"
+                    android:textColor="#FFFFFF" />
+
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/StudentMobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:ems="10"
+                android:hint="Mobile no:"
+                android:inputType="phone"
+                android:textColorHint="#FFFFFF" />
+
+
+            <EditText
+                android:id="@+id/StudentCurrentAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:ems="10"
+                android:hint="Current Address"
+                android:inputType="textPersonName"
+                android:textColorHint="#FFFFFF" />
+
+
+            <EditText
+                android:id="@+id/StudentPermanentAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:ems="10"
+                android:hint="Permanent address"
+                android:inputType="textPersonName"
+                android:textColorHint="#FFFFFF" />
+
+
+            <EditText
+                android:id="@+id/StudentCountry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:ems="10"
+                android:hint="Country"
+                android:inputType="textPersonName"
+                android:textColorHint="#FFFFFF" />
+
+
+            <EditText
+                android:id="@+id/StudentParentName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:hint="Parent/Guardian Name"
+                android:inputType="textPersonName"
+                android:textColorHint="#FFFFFF" />
+
+
+            <EditText
+                android:id="@+id/StudentCentreId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:hint="Centre id"
+                android:inputType="textPersonName"
+                android:textColorHint="#FFFFFF" />
+
+            <EditText
+                android:id="@+id/StudentCourseId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:hint="Course id"
+                android:inputType="textPersonName"
+                android:textColorHint="#FFFFFF" />
+
+            <Button
+                android:id="@+id/RegisterStudentButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Register Student" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
