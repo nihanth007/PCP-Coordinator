@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="tk.nihanth.pcp_coordinator.Attendance">
+
+    <TextView
+        android:id="@+id/deviceText"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="Device Connected" />
+
+    <TextView
+        android:id="@+id/DeviceConnectionStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="False"
+        android:gravity="right"
+        android:textColor="#ff0000"
+        android:layout_toRightOf="@id/deviceText"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:id="@+id/FingerImage"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/deviceText"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="23dp" />
+
+    <EditText
+        android:hint="Please Enter Student Id"
+        android:id="@+id/PersonAttendanceId"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/FingerImage"
+        android:layout_alignParentStart="true" />
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Capture Finger"
+            android:id="@+id/FingerCaptureButton"
+            android:layout_weight="1"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:id="@+id/AttendanceSubmitButton"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/StatusMessageAttendance"
+        android:layout_below="@id/PersonAttendanceId"
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

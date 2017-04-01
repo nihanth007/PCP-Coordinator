@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="tk.nihanth.pcp_coordinator.FaceLogin">
+    <EditText
+        android:gravity="center"
+        android:id="@+id/FacePersonId"
+        android:background="#f0f0f0"
+        android:hint="Enter Your Id"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+    <ImageView
+        android:layout_below="@id/FacePersonId"
+        android:background="@color/cardview_dark_background"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/FaceImage" />
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Capture Photo"
+            android:id="@+id/FaceCaptureButton"
+            android:layout_weight="1"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:id="@+id/FaceLoginButton"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
